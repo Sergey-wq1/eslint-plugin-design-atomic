@@ -3,6 +3,10 @@
   "version": "0.0.3",
   "author": "natarius_95",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sergey-wq1/eslint-plugin-design-atomic.git"
+  },
   "description": "rule for importing from high modules to lower ones",
   "type": "commonjs",
   "license": "MIT",
