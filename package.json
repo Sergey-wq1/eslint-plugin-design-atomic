@@ -1,0 +1,21 @@
+{
+  "name": "eslint-plugin-design-atomic",
+  "version": "0.0.3",
+  "author": "natarius_95",
+  "main": "index.js",
+  "description": "rule for importing from high modules to lower ones",
+  "type": "commonjs",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.49.0"
+  },
+  "keywords": [
+    "elint",
+    "atomic desgin",
+    "atomic react",
+    "atomic eslint"
+  ],
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  }
+}
