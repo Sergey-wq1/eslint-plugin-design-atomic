@@ -1,7 +1,13 @@
 eslint-plugin-design-atomic
 ===================
 
-prohibits imports to the lower levels from the upper, as well as cross-imports
+prohibits imports to the lower levels from the upper
+
+The solution is for atomic design
+For correct operation, folders must be named according to the architecture
+
+**[atoms -> molecules -> organisms -> templates]**
+
 # Installation
 
 Install [ESLint](https://www.github.com/eslint/eslint) either locally or globally.

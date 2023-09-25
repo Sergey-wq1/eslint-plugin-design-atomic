@@ -1,5 +1,5 @@
 module.exports = {
-  modules: [
+  design_modules: [
     'atoms',
     'molecules',
     'organisms',

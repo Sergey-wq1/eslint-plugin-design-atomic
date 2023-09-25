@@ -1,4 +1,5 @@
-const {modules} = require("../const/atomic-modules");
+const { design_modules } = require("../utils/const/atomic-modules");
+const getErrorMessage = require("../utils/helpers/getErrorMessage");
 
 module.exports = {
   meta: {
@@ -12,27 +13,26 @@ module.exports = {
   create(context) {
     return {
       ImportDeclaration(node) {
-        const filename = context.filename;
-        const importPath = node.source.value;
+        const currentFileName = context.physicalFilename;
 
-        modules.forEach((module, index) => {
-          if (filename.includes(module)) {
-            const importPathIndex = modules.findIndex((item) => importPath.includes(item));
-            const importPathModule = modules[importPathIndex];
-            if (importPathIndex > index) {
-              context.report({
-                node,
-                message: `${importPathModule} cannot be imported into ${module}
-                [atoms -> molecules -> organisms -> templates]`,
-              });
-            } else if (importPathIndex < 0) {
-              context.report({
-                node,
-                message: 'not crossImports',
-              });
-            }
-          }
-        });
+        const importPathInCurrentFileName = node.source.value;
+
+        const importPathModuleLevel = design_modules
+          .findIndex((designModuleName) => importPathInCurrentFileName.includes(designModuleName));
+
+        const filePathModuleLevel = design_modules
+          .findIndex((designModuleName) => currentFileName.includes(designModuleName));
+
+        const importPathModuleName = design_modules[importPathModuleLevel];
+        const filePathModuleName = design_modules[filePathModuleLevel];
+
+        if (importPathModuleLevel > filePathModuleLevel) {
+          context.report({
+            node,
+            message: getErrorMessage(importPathModuleName, filePathModuleName),
+          });
+        }
+
       }
     };
   }
